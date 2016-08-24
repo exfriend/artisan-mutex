@@ -13,6 +13,7 @@ trait PreventRealOverlapping
         $def = parent::configureUsingFluentDefinition();
 
         $this->addOption( 'force', 'f', null, 'Ignore mutex locks' );
+        $this->addOption( 'unlock', 'u', null, 'Unlock mutex' );
 
         return $def;
     }
@@ -22,6 +23,12 @@ trait PreventRealOverlapping
     {
 
         $this->mutex = new Mutex( $this );
+
+        if ( $this->mutex->exists() && $this->option( 'unlock' ) )
+        {
+            $this->info( 'Process unlocked' );
+            return false;
+        }
 
         if ( $this->mutex->exists() && !$this->option( 'force' ) )
         {
