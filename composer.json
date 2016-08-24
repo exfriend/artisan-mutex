@@ -1,0 +1,19 @@
+{
+    "name": "exfriend/artisan-mutex",
+    "description": "Prevent ANY overlapping for Laravel Artisan commands.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+      "psr-4":{
+         "Exfriend\\ArtisanMutex\\": "src/"
+      }
+    },
+    "authors": [
+        {
+            "name": "Vladislav Otchenashev",
+            "email": "i@zlad.tk"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
