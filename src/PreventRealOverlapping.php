@@ -24,7 +24,10 @@ trait PreventRealOverlapping
 
     $this->mutex = new Mutex( $this );
 
-    $this->checkMutex();
+    if( !$this->checkMutex() )
+    {
+      return false;
+    }
 
     $this->mutex->lock();
     $exec = parent::execute( $input, $output );
@@ -51,6 +54,8 @@ trait PreventRealOverlapping
       $this->error( 'Process is locked' );
       return false;
     }
+
+    return true;
 
   }
 
