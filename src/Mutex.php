@@ -24,7 +24,7 @@ class Mutex
 
     public function lock()
     {
-        return file_put_contents( $this->filename(), '' );
+        return $this->write( '' );
     }
 
     public function unlock()
@@ -32,6 +32,15 @@ class Mutex
         return unlink( $this->filename() );
     }
 
+    public function read()
+    {
+        return file_get_contents( $this->filename() );
+    }
+
+    public function write( $text )
+    {
+        return file_put_contents( $this->filename(), $text );
+    }
 
     public function filename()
     {
